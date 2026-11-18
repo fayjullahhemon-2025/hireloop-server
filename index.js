@@ -51,6 +51,14 @@ app.get('/jobs', async (req, res) => {
     const result = await cursor.toArray();
     res.send(result)
 })
+//get job by id api
+app.get('/jobs/:id', async (req, res) => {
+    const id = req.params.id;
+    const query = { _id: new ObjectId(id) }
+    const job = await jobs.findOne(query);
+    res.send(job)
+
+})
 //delete job api
 app.delete('/jobs/:id', async (req, res) => {
     const id = req.params.id;
